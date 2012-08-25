@@ -1,0 +1,43 @@
+// Place all the styles related to the splash controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.main-wrap{
+	width: 800px;
+	min-height: 100%;
+	margin: auto;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+.images {
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	padding: 40px;
+	display: block;
+	width: 100px;
+	height: 100px;
+	margin:auto;
+	
+	&:hover {
+		background-color: #4A5050;
+	}
+}
+
+.hover-effect {
+	-webkit-box-shadow: 3px 3px 5px #000;
+}
+
+.first-image {
+	text-align: center;
+}
+
+/*.poster {
+	-webkit-transform: rotateY(-30deg) translateZ;
+}
+
+#ring {
+	-webkit-transform-style: preserve-3d;
+	-webkit-transform: rotateY(180deg);
+}*/
