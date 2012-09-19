@@ -1,4 +1,6 @@
 VarunRau::Application.routes.draw do
+  get "resume/index"
+
   get "contact/index"
 
   get "splash/index"
