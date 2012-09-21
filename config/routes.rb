@@ -1,4 +1,6 @@
 VarunRau::Application.routes.draw do
+  get "rsa/index"
+
   get "resume/index"
 
   get "contact/index"
