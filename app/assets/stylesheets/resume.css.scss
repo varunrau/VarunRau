@@ -1,3 +1,36 @@
 // Place all the styles related to the Resume controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+h2 {
+	color: red;
+	border-bottom: 2px solid-black;
+}
+
+.sidebar {
+	position: fixed;
+	float: left;
+	box-shadow: 0 5px 5px 0px #ccc;
+	width: 180px;
+}
+
+.sidebar ul {
+	list-style-type: none;
+	margin-left: 0px;
+	padding: 0px;
+}
+
+#indent {
+	margin-left: 10px;
+	padding: 10px;
+}
+
+.sidebar li a:hover {
+	text-decoration: none;
+	font-weight: bold;
+	color: #069;
+}
+
+.resume {
+	margin: 0 100px 0 190px;
+}

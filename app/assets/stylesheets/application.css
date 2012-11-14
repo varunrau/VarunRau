@@ -63,6 +63,12 @@
 	font-family: monaco;
 }
 
-.background-image {
-	background-image:url("dark_background.png");
+#wrapper {
+	width: 960px;
+	margin-top: 40px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 0px;
+	border: 1px solid;
+	padding: 0px;
 }

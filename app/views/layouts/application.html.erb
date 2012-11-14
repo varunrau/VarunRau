@@ -6,7 +6,15 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body class="font background-image">
+<body class="font">
+	<div id="wrapper">
+		<div id="menubar">
+			<ul>
+				<li><%= link_to("Varun Rau", :action => 'index', :controller => 'splash') %></li>
+				<li><%= link_to("Resume", :action => 'index', :controller => 'resume') %></li>
+				<li><%= link_to("Projects", :action => 'index', :controller => 'projects') %></li>
+			</ul>
+		</div>
   <!-- <div class="navbar nav-bar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -25,6 +33,7 @@
         </div>
       </div>
     </div> -->
-<%= yield %>
+		<%= yield %>
+	</div>
 </body>
 </html>
