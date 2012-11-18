@@ -1,4 +1,6 @@
 VarunRau::Application.routes.draw do
+  get "fbmuseum/index"
+
   get "rsa/index"
 
   get "resume/index"

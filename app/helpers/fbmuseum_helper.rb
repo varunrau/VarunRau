@@ -1,0 +1,2 @@
+module FbmuseumHelper
+end
