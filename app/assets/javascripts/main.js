@@ -7,6 +7,9 @@ var lookspeed = .045;
 var maplength = 10;
 var mapLength = mapLength;
 
+var camStartPosX = 0;
+var camStartPosZ = 0;
+
 // A basic map. I'll write a script to generate this later.
 var map = new Array(); 
 
@@ -35,7 +38,7 @@ var picsReady = function() {
     console.log("photos");
     console.log(photos);
     var index = 1;
-    for (var i = 0; i < friendPics.length - 10; i++) {
+    for (var i = 0; i < 100; i++) {
         var mapVal = new Array();
         mapVal[0] = index;
         mapVal[1] = 0;
@@ -57,10 +60,12 @@ var start = function() {
   scene = new t.Scene();
   scene.fog = new t.FogExp2(0xD6F1FF, 0.0005); // We'll add fog, so we can see depth in this world
 
+  setup();
+
   cam = new t.PerspectiveCamera(60, aspectRatio, 1, 10000);
   cam.position.y = unitsize * .5; // Raise the camera off the ground
-  cam.position.x = 330;
-  cam.position.z = -490;
+  cam.position.x = camStartPosX;
+  cam.position.z = camStartPosZ;
   scene.add(cam);
 
   // Insert code to control the camera
@@ -68,7 +73,6 @@ var start = function() {
   controls.movementSpeed = walkspeed;
   controls.lookSpeed = lookspeed;
 
-  setup(); // This will set up the scene including rendering the map
 
   renderer = new t.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -117,6 +121,8 @@ var setup = function() {
                 wall.position.x = (i - mapWidth/2) * unitsize;
                 wall.position.y = wallheight/2;
                 wall.position.z = (j - mapWidth/2) * unitsize;
+                camStartPosX = wall.position.x;
+                camStartPosZ = wall.position.z;
                 scene.add(wall); // Add the wall to the scene 
             }
         }
@@ -168,7 +174,7 @@ function collision(vector) {
                 document.getElementById('auth-displayname').innerHTML = me.name;
               }
             })
-            FB.api('/me/friends?fields=name,id,picture', function(response) {
+            FB.api('/me/friends?fields=name,id,picture.type(large)', function(response) {
                 friendPics = new Array();
                 for (var i = 0; i < response.data.length; i++) {
                     var datum = response.data[i];
