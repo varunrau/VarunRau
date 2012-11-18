@@ -22,31 +22,35 @@ var scene, cam, renderer, controls, clock, projector, model, skin;
 var mouse = { x: 0, y: 0};
 
 var photos = new Array();
-
+var redditPhotos = new Array();
 
 // This is called when the document is ready. We'll show a simple start
 // screen then when the user is ready we'll start the main animation loop.
 $(document).ready(function() {
-    console.log("Starting");
 });
+
+$.getJSON('http://www.reddit.com/r/aww/.json?jsonp=?', function(data) {
+    var redditData = data.data.children;
+    for (var i = 0; i < redditData.length; i++) {
+        console.log(redditData[i].data.url);
+        redditPhotos[i] = redditData[i].url;
+    }
+})
 
 var picsReady = function() {
     for (var i = 0; i < friendPics.length; i++) {
         var mesh = new t.MeshLambertMaterial({map: t.ImageUtils.loadTexture(friendPics[i]),});
         photos[i] = mesh;
     }
-    console.log("photos");
-    console.log(photos);
     var index = 1;
     for (var i = 0; i < 100; i++) {
         var mapVal = new Array();
         mapVal[0] = index;
         mapVal[1] = 0;
         mapVal[2] = index + 1;
-        index++;
+        index += 2;
         map[i] = mapVal;
     }
-    console.log("map creation done");
     map[map.length] = new Array(0, index + 1, 0);
     mapWidth = map.length;
     mapHeight = map[0].length;
@@ -108,15 +112,13 @@ var setup = function() {
 	);
 	scene.add(floor);
 
-    var cube = new t.CubeGeometry(unitsize, wallheight, unitsize);
+    var cube = new t.CubeGeometry(unitsize, wallheight, 5);
     // Let's create the walls
     for (var i = 0; i < mapWidth; i++) {
         for (var j = 0, m = map[i].length; j < m; j++) {
             if (map[i][j]) {
                 // We want to use a different image for each of the walls.
                 // So we give the image a different texture
-                console.log("Getting photo " + map[i][j]);
-                console.log("Photo url: " + photos[map[i][j]]);
                 var wall = new t.Mesh(cube, photos[map[i][j]]);
                 wall.position.x = (i - mapWidth/2) * unitsize;
                 wall.position.y = wallheight/2;

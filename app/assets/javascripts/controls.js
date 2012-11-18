@@ -32,6 +32,8 @@ THREE.FirstPersonControls = function(object, domElement) {
     this.phi = 0;
     this.theta = 0;
 
+    this.pause = false;
+
     this.moveForward = false;
     this.moveBackward = false;
     this.moveLeft = false;
@@ -102,6 +104,9 @@ THREE.FirstPersonControls = function(object, domElement) {
             case 83:
                 this.moveBackward = true;
                 break;
+            case 80:
+                this.pause = !this.pause;
+                break;
         }
     };
 
@@ -132,7 +137,9 @@ THREE.FirstPersonControls = function(object, domElement) {
         var moveSpeed = 0;
 
         moveSpeed = del * this.movementSpeed;
-        
+        if (this.pause) {
+            return;
+        }
         if (this.moveForward) {
             this.object.translateZ(-(moveSpeed));
             if (collision(this.object.position)) {
