@@ -9,13 +9,27 @@ var mapLength = mapLength;
 
 // A basic map. I'll write a script to generate this later.
 var map = [
-            
             [1, 0, 2],
             [3, 0, 4],
             [5, 0, 6],
             [7, 0, 8],
             [9, 0, 10],
-            [0, 11, 0]
+            [0, , 0],
+            [11, 0, 12],
+            [13, 0, 14],
+            [15, 0, 16],
+            [17, 0, 18],
+            [19, 0, 20],
+            [21, 0, 22],
+            [23, 0, 24],
+            [25, 0, 26],
+            [27, 0, 28],
+            [29, 0, 30],
+            [31, 0, 32],
+            [33, 0, 34],
+            [35, 0, 36],
+            [37, 0, 38],
+            [0, 39, 0]
             ];
 var mapWidth = map.length;
 var mapHeight = map[0].length;
@@ -25,33 +39,23 @@ var t = THREE;
 var scene, cam, renderer, controls, clock, projector, model, skin;
 var mouse = { x: 0, y: 0};
 
-//new t.MeshLambertMaterial({color: 0xEDCBA0,
+var photos = new Array();
 
-var photos = [
-                new t.MeshLambertMaterial({map: t.ImageUtils.loadTexture('/assets/p1.jpg'),}),
-                new t.MeshLambertMaterial({map: t.ImageUtils.loadTexture('/assets/p2.jpg'),}),
-                new t.MeshLambertMaterial({map: t.ImageUtils.loadTexture('/assets/p3.jpg'),}),
-                new t.MeshLambertMaterial({map: t.ImageUtils.loadTexture('/assets/p1.jpg'),}),
-                new t.MeshLambertMaterial({map: t.ImageUtils.loadTexture('/assets/p1.jpg'),}),
-                new t.MeshLambertMaterial({map: t.ImageUtils.loadTexture('/assets/p1.jpg'),}),
-                new t.MeshLambertMaterial({map: t.ImageUtils.loadTexture('/assets/p1.jpg'),}),
-                new t.MeshLambertMaterial({map: t.ImageUtils.loadTexture('/assets/p1.jpg'),}),
-                new t.MeshLambertMaterial({map: t.ImageUtils.loadTexture('/assets/p1.jpg'),}),
-                new t.MeshLambertMaterial({map: t.ImageUtils.loadTexture('/assets/p1.jpg'),}),
-                new t.MeshLambertMaterial({map: t.ImageUtils.loadTexture('/assets/p1.jpg'),}),
-                new t.MeshLambertMaterial({map: t.ImageUtils.loadTexture('/assets/p1.jpg'),}),
-                ];
 
 // This is called when the document is ready. We'll show a simple start
 // screen then when the user is ready we'll start the main animation loop.
 $(document).ready(function() {
-    //$('body').append('<div id="start-page">Are you Ready?</div>');
-    //$('start-page').css({width: window.innerWidth, height: window.innerHeight}).one('click', function(e) {
-        //e.preventDefault(); //$(this).fadeOut();
-        start();
-        animate();
-    //});
+    console.log("Starting");
 });
+
+var picsReady = function() {
+    for (var i = 0; i < friendPics.length; i++) {
+        mesh = new t.MeshLambertMaterial({map: t.ImageUtils.loadTexture(friendPics[i]),});
+        photos[i] = mesh;
+    }
+    start();
+    animate();
+}
 
 var start = function() {
   clock = new t.Clock();
@@ -87,7 +91,6 @@ var onMouseMove = function(e) {
 };
 
 var animate = function() {
-    
     requestAnimationFrame(animate);
     render();
 };
@@ -143,3 +146,56 @@ function collision(vector) {
     //var sec = sector(vector);
     return false;//map[sec.x][sec.z] > 0;
 }
+
+
+
+// Load the SDK Asynchronously
+      (function(d){
+         var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement('script'); js.id = id; js.async = true;
+         js.src = "//connect.facebook.net/en_US/all.js";
+         ref.parentNode.insertBefore(js, ref);
+       }(document));
+
+      // Init the SDK upon load
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '248605301932783' // Use your app id, not this one. :P
+        });
+
+        // listen for and handle auth.statusChange events
+        FB.Event.subscribe('auth.statusChange', function(response) {
+          if (response.authResponse) {
+            // user has auth'd your app and is logged into Facebook
+            FB.api('/me', function(me){
+              if (me.name) {
+                document.getElementById('auth-displayname').innerHTML = me.name;
+              }
+            })
+            FB.api('/me/friends?fields=name,id,picture', function(response) {
+                friendPics = new Array();
+                for (var i = 0; i < response.data.length; i++) {
+                    var datum = response.data[i];
+                    friendPics[i] = datum.picture.data.url;
+                }
+                picsReady();
+            });
+            document.getElementById('auth-loggedout').style.display = 'none';
+            document.getElementById('auth-loggedin').style.display = 'block';
+          } else {
+            // user has not auth'd your app, or is not logged into Facebook
+            document.getElementById('auth-loggedout').style.display = 'block';
+            document.getElementById('auth-loggedin').style.display = 'none';
+          }
+        });
+
+        // respond to clicks on the login and logout links
+        document.getElementById('auth-loginlink').addEventListener('click', function(){
+          FB.login(function(response) {}, {scope: 'friends_photos'});
+        });
+        document.getElementById('auth-logoutlink').addEventListener('click', function(){
+          FB.logout();
+        }); 
+      } 
+
