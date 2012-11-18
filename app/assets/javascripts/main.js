@@ -8,31 +8,10 @@ var maplength = 10;
 var mapLength = mapLength;
 
 // A basic map. I'll write a script to generate this later.
-var map = [
-            [1, 0, 2],
-            [3, 0, 4],
-            [5, 0, 6],
-            [7, 0, 8],
-            [9, 0, 10],
-            [0, , 0],
-            [11, 0, 12],
-            [13, 0, 14],
-            [15, 0, 16],
-            [17, 0, 18],
-            [19, 0, 20],
-            [21, 0, 22],
-            [23, 0, 24],
-            [25, 0, 26],
-            [27, 0, 28],
-            [29, 0, 30],
-            [31, 0, 32],
-            [33, 0, 34],
-            [35, 0, 36],
-            [37, 0, 38],
-            [0, 39, 0]
-            ];
-var mapWidth = map.length;
-var mapHeight = map[0].length;
+var map = new Array(); 
+
+var mapWidth;
+var mapHeight;
 
 // Some more convenience methods
 var t = THREE;
@@ -50,9 +29,24 @@ $(document).ready(function() {
 
 var picsReady = function() {
     for (var i = 0; i < friendPics.length; i++) {
-        mesh = new t.MeshLambertMaterial({map: t.ImageUtils.loadTexture(friendPics[i]),});
+        var mesh = new t.MeshLambertMaterial({map: t.ImageUtils.loadTexture(friendPics[i]),});
         photos[i] = mesh;
     }
+    console.log("photos");
+    console.log(photos);
+    var index = 1;
+    for (var i = 0; i < friendPics.length - 10; i++) {
+        var mapVal = new Array();
+        mapVal[0] = index;
+        mapVal[1] = 0;
+        mapVal[2] = index + 1;
+        index++;
+        map[i] = mapVal;
+    }
+    console.log("map creation done");
+    map[map.length] = new Array(0, index + 1, 0);
+    mapWidth = map.length;
+    mapHeight = map[0].length;
     start();
     animate();
 }
@@ -117,12 +111,13 @@ var setup = function() {
             if (map[i][j]) {
                 // We want to use a different image for each of the walls.
                 // So we give the image a different texture
+                console.log("Getting photo " + map[i][j]);
+                console.log("Photo url: " + photos[map[i][j]]);
                 var wall = new t.Mesh(cube, photos[map[i][j]]);
                 wall.position.x = (i - mapWidth/2) * unitsize;
                 wall.position.y = wallheight/2;
                 wall.position.z = (j - mapWidth/2) * unitsize;
-                // Add the wall to the scene
-                scene.add(wall);
+                scene.add(wall); // Add the wall to the scene 
             }
         }
     }
