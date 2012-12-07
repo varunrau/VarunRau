@@ -5,13 +5,16 @@
 
 <div class="main-wrap">
 	<div class="items">
-		<% @projects.each do |project| %>
-		<div class="itemWrap well" style="padding-top:20px;" <% link_to root_path %>>
-			<%= image_tag project.image, :class => "itemImages" %>
-			<!-- <img class="itemPreview" src= "/assets/images/mimo.png"> -->
-			<span class="itemTitle" style="padding-left: 30px;"><%= project.name %></span><br><br>
-			<%= project.description %>
-		</div>
-		<% end %>
+		<div class="itemWrap well" style="padding-top:20px;" >
+					<img alt="Mimo" class="itemImages" src="/assets/mimo.png" />
+					<span class="itemTitle" style="padding-left: 30px;">Music in Motion</span><br><br>
+					I had been competing on a nationally-ranked High School Quizbowl team. Quizbowl, a Jeopardy!-like competition that requires both wit and reflexes, was buzzer based. Much of my team's success was owed to our many practices with real buzzers. However, many teams that we competed with did not have the fortune of a buzzer system and were disadvantaged. I decided to solve that problem by creating an iOS app that leverages Bonjour to create an impromptu quizbowl match.
+				</div>
+		
+		
+		
+		
+		
+		
 	</div>
 </div>
