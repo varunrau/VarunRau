@@ -10,6 +10,8 @@ VarunRau::Application.routes.draw do
   get "splash/index"
 
   resources :projects
+  
+  resources :resume
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
