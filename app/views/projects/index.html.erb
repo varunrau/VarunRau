@@ -3,24 +3,17 @@
 <h1>Projects</h1>
 
 <div id='demoMenu'>
-  <div class='project'>
-    <div class='image'>
-      <%= image_tag('sds.png', :alt => "smart data structure") %>
+  <% @projects.each do |project| %>
+    <div class='project'>
+      <div class='image'>
+        <%= image_tag('project.image') %>
+      </div>
+      <a href='#'><%= project.title %></a>
+      <span class='info'>
+        <%= project.tech %>
+      </span>
     </div>
-    <a href='#'>Smart Data Structures</a>
-    <span class='info'>
-      Technologies Used: Python, Matplotlib
-    </span>
-  </div>
-  <div class='project'>
-    <div class='image'>
-      <%= image_tag('sds.png', :alt => "smart data structure") %>
-    </div>
-    <a href='#'>Smart Data Structures</a>
-    <span class='info'>
-      Technologies Used: Python, Matplotlib
-    </span>
-  </div>
+  <% end %>
 </div>
 
 <%# <div class="main-wrap"> %>
