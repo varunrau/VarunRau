@@ -1,12 +1,103 @@
-
-.itemTitle{
-	font-size: 40;
-	color: #383838;
+// This sweet styling was borrowed from html5rocks.gom/en/tutorials/webgl/demoloop
+.itemTitle {
+  font-size: 40;
+  color: #383838;
 }
 
-.itemImages{
-	width: 100px;
-	height: 100px;
-	margin-left: auto;
-	margin-right: auto;
+.itemImages {
+  width: 100px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+#demoMenu {
+  z-index: 100;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: white;
+  text-align: center;
+  width: 100%;
+  height: 100px;
+  vertical-align: top;
+  background-color: rgba(0, 0, 0, 0);
+  -webkit-transform-origin: 50% 0;
+  -webkit-transform-duration: 0.5s;
+  -webkit-transform-timing-function: ease-in-out;
+  -webkit-perspective: 1920px;
+  -wekit-perspective-origin: 50% 0;
+}
+
+#demoMenu > div {
+  vertical-align: top;
+  display: inline-block;
+  font-size: 13px;
+  width: 180px;
+  height: 208px;
+  padding: 0px;
+  margin: 10px;
+  background-color: rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.75);
+  -webkit-transform-origin: 50% 50%;
+  -webkit-transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease-in-out;
+}
+
+#demoMenu .image {
+  width: 180px;
+  height: 120px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#demoMenu .image img {
+  width: 180px;
+}
+
+#demoMenu a {
+  color: black;
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+  background-color: #30dfff;
+  border-bottom: 1px solid black;
+  text-shadow: 0px 1px 1px rgba(255, 235, 215, 0.5);
+  background: #ffa84c;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #ffa84c),
+    color-stop(100%, #df5b0d)
+  );
+}
+
+.author {
+  display: block;
+  font-size: 14px;
+}
+
+.info {
+  margin-top: 4px;
+  display:block;
+  color: #ddd;
+  font-size: 12px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+#demoMenu > div:hover {
+  opacity: 0;
+  -webkit-transform: rotateX(90deg);
+}
+
+
+
+
+
+

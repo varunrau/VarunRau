@@ -7,8 +7,6 @@ gem 'rails', '3.2.7'
 gem 'twitter-bootstrap-rails'
 gem 'twitter'
 
-gem 'newrelic_rpm'
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -23,6 +21,7 @@ group :assets do
 end
 
 group :producution do
+    gem 'newrelic_rpm'
     gem 'pg'
 end
 

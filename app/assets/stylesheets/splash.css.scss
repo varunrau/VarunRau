@@ -1,57 +1,26 @@
-// Place all the styles related to the splash controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 
-.main-wrap{
-	width: 800px;
-	min-height: 100%;
-	margin: auto;
-	padding-left: 50px;
-	padding-right: 50px;
-}
-
-.images {
-	border-radius: 10px;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	padding: 40px;
-	display: block;
-	width: 100px;
-	height: 100px;
-	margin:auto;
-	
-	&:hover {
-		background-color: #4A5050;
-	}
-}
-
-#temp {
-    margin-top: 15%;
-    height: 200px;
-    padding: 20px 20px 20px 50px;
-    float: left;
-}
-
-.bottom-bar {
-	-webkit-border-radius: 100px;
-	width: 400px;
-	background-color: #8B8383;
-}
-
-.hover-effect {
-	-webkit-box-shadow: 3px 3px 5px #000;
-}
-
-.big-image {
+.outer {
+	border: 2px solid brown;
+	border-radius: 1em;
+	background: red;
+	font-size: 20pt;
+	width: 12em;
+	height: 7em;
 	text-align: center;
-	
-	margin-left:auto;
-	margin-right:auto;
-	display:block;
 }
 
-.varunimage {
-	display: block;
-	float: right;
+.nametag {
+	color: white;
+	font-family: sans-serif;
+	padding: 0.5em;
+}
+
+.name {
+	color: black;
+	background: white;
+	font-family: "Marker Felt", cursive;
+	font-size: 45pt;
+	padding-top: .8em;
+	height: 1em;
 }
 
