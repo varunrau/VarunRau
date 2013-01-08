@@ -1,16 +1,24 @@
-<%- model_class = Project -%>
-<div class="page-header" style="text-align:center;">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
-</div>
+<%= stylesheet_link_tag params[:controller] %>
+
+<h1>Projects</h1>
 
 <div id='demoMenu'>
-  <div>
+  <div class='project'>
     <div class='image'>
       <%= image_tag('sds.png', :alt => "smart data structure") %>
     </div>
-    <a href='#'>Smart Data Structure</a>
+    <a href='#'>Smart Data Structures</a>
     <span class='info'>
-      Technologies Used
+      Technologies Used: Python, Matplotlib
+    </span>
+  </div>
+  <div class='project'>
+    <div class='image'>
+      <%= image_tag('sds.png', :alt => "smart data structure") %>
+    </div>
+    <a href='#'>Smart Data Structures</a>
+    <span class='info'>
+      Technologies Used: Python, Matplotlib
     </span>
   </div>
 </div>

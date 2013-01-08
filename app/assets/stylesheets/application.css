@@ -12,14 +12,12 @@
  *= require_tree .
  */
 
-@import "projects.css.scss";
-
 .nav-bar {
 	color: #121260;
 }
 
 .font {
-	font-family: monaco;
+	font-family: menlo;
 }
 
 #wrapper {
