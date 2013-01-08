@@ -1,3 +1,3 @@
 class Project < ActiveRecord::Base
-  attr_accessible :description, :image, :name
+  attr_accessible :description, :image, :tech, :name
 end
