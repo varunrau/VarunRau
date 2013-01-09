@@ -8,6 +8,7 @@ $('div.project').click(function() {
 });
 
 $(document).ready(function() {
+    console.log('hello');
     // Move the arrow so it points to the first project card.
     $('div.arrow-select').each(function() { $(this).css('margin-left', pos(0) + 'px'); });
 });
