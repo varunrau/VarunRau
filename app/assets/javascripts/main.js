@@ -32,7 +32,7 @@ $(document).ready(function() {
 $.getJSON('http://www.reddit.com/r/aww/.json?jsonp=?', function(data) {
     var redditData = data.data.children;
     for (var i = 0; i < redditData.length; i++) {
-        console.log(redditData[i].data.url);
+        // console.log(redditData[i].data.url);
         redditPhotos[i] = redditData[i].url;
     }
 })
