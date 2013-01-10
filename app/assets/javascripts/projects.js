@@ -8,16 +8,21 @@ $(document).ready(function() {
     // Move the arrow so it points to the first project card.
     $('div.arrow-select').each(function() { $(this).css('margin-left', pos(0) + 'px'); });
 
+    var init = description(0);
+    $('div.description').text(init);
+
     $('div.project').click(function() {
         // Move the arrow
         $('div.arrow-select').css('margin-left', pos($(this).index()) + 'px');
         // Change the description
-        // var description = description($(this).index());
-        // $('description').text = description;
+        var d = description($(this).index());
+        $('div.description').text(d);
     });
 });
 
 var description = function(card) {
+    console.log('desc');
+    console.log(card);
 
     switch (card) {
         case 0:
