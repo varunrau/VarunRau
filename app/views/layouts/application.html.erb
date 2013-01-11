@@ -8,17 +8,7 @@
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= csrf_meta_tags %>
   </head>
-  <body class="font">
-    <div> 
-      <%# <div id="menubar"> %>
-      <%#   <ul> %>
-      <%#     <li><%= link_to("Varun Rau", :controller => 'splash') %1></li> %>
-      <%#     <li><%= link_to("Resume", :action => 'index', :controller => 'resume') %1></li> %>
-      <%#     <li><%= link_to("Projects", :action => 'index', :controller => 'projects') %1></li> %>
-      <%#   </ul> %>
-      <%# </div> %>
-
+  <body>
       <%= yield %>
-    </div>
   </body>
 </html>
