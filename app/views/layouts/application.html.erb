@@ -9,6 +9,28 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+
+    <div class='dock'>
+      <div class='dock-item'>
+        <%= link_to image_tag('about.png', :style => 'padding-left: 7px;'), { :controller => :about} %>
+      </div>
+      <div class='dock-item'>
+        <%= link_to image_tag('resume.png'), { :controller => :resume } %>
+      </div>
+      <div class='dock-item'>
+        <%= link_to image_tag('xcode.png'), { :controller => :projects, :action => :index }%>
+      </div>
+      <span class='stretch'></span>
+    </div>
+
+      <%# <div id="menubar"> %>
+      <%#   <ul> %>
+      <%#     <li><%= link_to("Varun Rau", :controller => 'splash') %1></li> %>
+      <%#     <li><%= link_to("Resume", :action => 'index', :controller => 'resume') %1></li> %>
+      <%#     <li><%= link_to("Projects", :action => 'index', :controller => 'projects') %1></li> %>
+      <%#   </ul> %>
+      <%# </div> %>
+
       <%= yield %>
   </body>
 </html>

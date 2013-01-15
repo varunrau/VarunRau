@@ -70,3 +70,61 @@
   color: #c00;
   background-color: #fff;
 }
+
+.dock {
+  position: absolute;
+  top: 25%;
+  left: 0px;
+  height: 400px;
+  width: 100px;
+  background: gray;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  -webkit-opacity: 25%;
+  opacity: 25%;
+
+  border-right: 3px solid white;
+  border-bottom: 2px solid white;
+  border-top: 2px solid white;
+
+  -webkit-box-shadow: 0 0 30px 5px #999;
+
+  /* HOVER OFF */
+  -webkit-transition-duration: 0.2s;
+  -webkit-transform: scale(1, 1);
+  -webkit-transition-timing-function: ease-in-out;
+
+  text-align: justify;
+}
+
+.dock:hover {
+  /* HOVER ON */
+  -webkit-transition-duration: 0.2s;
+  -webkit-transform: scale(1.25, 1.25);
+  -webkit-transition-timing-function: ease-in-out;
+}
+
+.dock > div:hover {
+  -webkit-transition-duration: 0.2s;
+  -webkit-transform: translate(30px, 0px);
+  -webkit-transition-timing-function: ease-in-out;
+}
+
+.dock > div {
+  -webkit-transition-duration: 0.2s;
+  -webkit-transform: translate(0px, 0px);
+  -webkit-transition-timing-function: ease-in-out;
+  display: inline-block;
+  *display: inline;
+}
+
+.stretch {
+  height: 100%;
+  display: inline-block;
+  font-size: 0;
+  line-height: 0;
+}

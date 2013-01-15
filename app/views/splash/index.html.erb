@@ -1,43 +1,302 @@
 <style>
-  .splash-container {
-    width: 50%;
-    margin: 0 auto;
+  .content {
+  }
+  .google {
+    padding-top: 10%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .outer {
-    border: 2px solid brown;
-    border-radius: 1em;
-    background: red;
-    font-size: 20pt;
-    width: 12em;
-    height: 7em;
-    text-align: center;
+  .input {
+    width: 300px;
+    height: 20px;
+    display: block;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .nametag {
-    color: white;
-    font-family: sans-serif;
-    padding: 0.5em;
+  .input-field {
+    width: 300px;
+    height: 20px;
   }
 
-  .name {
+  .buttons {
+    width: 215px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  button {
+    display: inline-block;
+  }
+
+  .mouse {
+    position: absolute;
+  }
+
+  #results .image {
+    width: 180px;
+    height: 120px;
+    overflow: hidden;
+  }
+
+  #results .image img {
+    width: 180px;
+  }
+
+  #results a {
     color: black;
-    background: white;
-    font-family: "Marker Felt", cursive;
-    font-size: 45pt;
-    padding-top: .4em;
-    height: 1em;
+    display: block;
+    font-size: 14px;
+    font-weight; bold;
+    text-decoration: none;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+    background-color: #30dfff;
+    border-bottom: 1px solid black;
+    text-shadow: 0px 1px 1px rgba(255, 235, 215, 0.5);
+    background: #ffa84c;
+    background: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(0%, #ffa84c),
+      color-stop(100%, #df5b0d)
+    );
   }
+
+  .result {
+    vertical-align: top;
+    display: inline-block;
+    font-size: 13px;
+    width: 180px;
+    height: 208px;
+    padding: 0px;
+    margin: 10px;
+    background-color: rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.75);
+    -webkit-transform-origin: 50% 50%;
+    -webkit-transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-in-out;
+  }
+
+  .info {
+    margin-top: 4px;
+    display: block;
+    color: #ddd;
+    font-size: 12px;
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+
+  #results {
+    z-index: 100;
+    top: 0px;
+    left: 0px;
+    color: white;
+    text-align: center;
+    width: 100%;
+    height: 100px;
+    vertical-align: top;
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .group-title {
+    padding-left: 200px;
+    color: black;
+    font-size: 20px;
+    text-align: left;
+  }
+
 
 </style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://ricostacruz.com/jquery.transit/jquery.transit.min.js"></script>
+<script>
 
-<div class='splash-container'>
-  <div class='outer'>
-    <div class='nametag'>
-      Hi! My name is
+  var fakeMouse = $('mouse');
+  var inputField = $('input');
+  $(document).ready(function() {
+    $($('img.mouse')[0]).css('visibility', 'hidden');
+    $('#results').css('opacity', '0.0');
+    <%# $('#results').hide(); %>
+    googleit()
+  });
+
+  var googleit = function() {
+    <%# $('body').css('cursor', 'wait'); %>
+
+    $($('img.mouse')[0]).css('visibility', 'visible');
+    $($('img.mouse')[0]).focus();
+    $($('img.mouse')[0]).animate({
+      top: ($($('.input-field')[0]).position().top + 100) + 'px',
+      left: ($($('.input-field')[0]).position().left + 10) + 'px',
+    },
+      1500,
+      function() {
+        $($('.input-field')[0]).focus(function() {
+          // Callback
+        });
+        $($('img.mouse')[0]).animate({ top: "+=18px", left: "+=10px" }, 'slow', function() {
+          // Call back
+        });
+        type("Varun", 0);
+      }
+    );
+  };
+
+  var type = function(text, index) {
+    var val = text.substr(0, index + 1);
+    $($('.input-field')[0]).attr('value', val);
+    if (index < text.length) {
+      setTimeout(function() {
+        type(text, index + 1); }, Math.random() * 240);
+    } else {
+      doneTyping();
+    }
+  };
+
+  var doneTyping = function() {
+    searchGoogle();
+    $('result').transition({
+      rotateX: '-90deg'
+    }, 'slow');
+  };
+
+  var searchGoogle = function() {
+    $('.wrapper').css({
+      '-webkit-transform': 'rotateX(90deg)',
+      '-webkit-transition-duration': '1s'
+    });
+    setTimeout(removeWrapper, 1000);
+  };
+
+  var showSearchResults = function() {
+    $('#results').css('opacity', '1.0');
+    $('.result').transition({
+      rotateX: '0deg'
+    }, 'slow');
+  };
+
+  var removeWrapper = function() {
+    $('.wrapper').remove();
+    showSearchResults();
+  };
+</script>
+
+
+<div class='wrapper'>
+  <%= image_tag( 'mouse.png', :class => 'mouse' ) %>
+  <div class='content'>
+    <%= image_tag( 'google.png', :class => 'google') %>
+    <div class='input'>
+      <input class='input-field'>
+      </input>
     </div>
-    <div class='name'>
-      Varun Rau
+    <div class='buttons'>
+      <button class='search'>
+        Google Search
+      </button>
+      <button class='lucky'>
+        I'm Feeling Lucky
+      </div>
+    </div>
+  </div>
+</div>
+<div id='results'>
+  <div class='group-title'>
+    Showing Search Results for 'just how awesome is Varun Rau?':
+  </div>
+  <div class='groups'>
+    <div class='achievments'>
+    <div class='group-title'>
+      Achievements
+    </div>
+      <div class='result'>
+        <div class='image'>
+          <img src='http://www.twilio.com/blog/wp-content/uploads/2012/03/AHPerk1.jpg' class='image'></img>
+        </div>
+        <a href='http://lifechain.info'>Angel Hack</a>
+        <span class='info'>
+          Varun Rau placed second at Angel Hack 2011 for Lifechain.
+        </span>
+      </div>
+      <div class='result'>
+        <div class='image'>
+          <%= image_tag( 'bsa.jpeg', :class => 'image' ) %>
+        </div>
+        <a href='#'>Eagle Scout</a>
+        <span class='info'>
+          Varun Rau served as a Senior Patrol Leader and became an Eagle Scout.
+        </span>
+      </div>
+      <div class='result'>
+        <div class='image'>
+          <img src='https://twimg0-a.akamaihd.net/profile_images/793152691/NOSB_logo_sm_rgb.Web.jpg' class='image'></img>
+        </div>
+        <a href='#'>National Science Titles</a>
+        <span class='info'>
+          Varun Rau placed second at NOBCChE and fourth at NOSB, both national science competitions.
+        </span>
+      </div>
+    </div>
+    <div class='interests'>
+      <div class='group-title'>
+        Interests
+      </div>
+      <div class='result'>
+        <div class='image'>
+          <img src='http://www.luxebabyluxe.com/blog/wp-content/uploads/2012/01/TorreyPinesGolf.jpg' class='image'></img>
+        </div>
+        <a href='#'>Golf</a>
+        <span class='info'>
+          High School Varsity Golf at La Jolla High
+        </span>
+      </div>
+      <div class='result'>
+        <div class='image'>
+          <img src='http://images.wisegeek.com/basketball.jpg' class='image'></img>
+        </div>
+        <a href='#'>Basketball</a>
+        <span class='info'>
+          Recreational Basketball
+        </span>
+      </div>
+    </div>
+    <div class='social-media'>
+      <div class='group-title'>
+        Social Media
+      </div>
+      <div class='result'>
+        <div class='image'>
+          <img src='https://si0.twimg.com/profile_images/2284174758/v65oai7fxn47qv9nectx.png' class='image'></img>
+        </div>
+        <a href='https://twitter.com/varunrau'>Twitter</a>
+        <span class='info'>
+          Follow @VarunRau
+        </span>
+      </div>
+      <div class='result'>
+        <div class='image'>
+          <img src='http://upload.wikimedia.org/wikipedia/commons/b/b3/GitHub.svg' class='image' style='background: white;'></img>
+        </div>
+        <a href='https://github.com/varunrau'>Github</a>
+        <span class='info'>
+          Fork Varun Rau on Github
+        </span>
+      </div>
+      <div class='result'>
+        <div class='image'>
+          <img src='http://blogs-images.forbes.com/tomiogeron/files/2011/10/linkedin_logo_11.jpg' class='image'></img>
+        </div>
+        <a href='www.linkedin.com'>LinkedIn</a>
+        <span class='info'>
+          Connect with Varun Rau on LinkedIn
+        </span>
+      </div>
     </div>
   </div>
 </div>

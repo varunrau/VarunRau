@@ -19,7 +19,60 @@ $(document).ready(function() {
         var d = description($(this).index());
         $('div.description').text(d);
     });
+    for (var i = 0; i < $('#dock-item').length; i++) {
+      dist($('#dock-item')[i]);
+    }
 });
+
+var dist = function(el) {
+  var mX, mY, distance;
+
+  function calculateDistance(elem, mouseX, mouseY) {
+    return Math.floor(Math.sqrt(Math.pow(mouseX - ($(elem).offset().left+($(elem).width()/2)), 2) + Math.pow(mouseY - ($(elem).offset().top+($(elem).height()/2)), 2)));
+  }
+
+  $(document).mousemove(function(e) {
+    mX = e.pageX;
+    mY = e.pageY;
+    if (isInDock(mX, mY)) {
+      distance = calculateDistance(el, mX, mY);
+      var dockItem = jQueryObject(el);
+      var normalize = sinusoid(distance)/100;
+      if (normalize >= 1) {
+      }
+    }
+  });
+
+};
+
+var sinusoid = function(distance) {
+  var pi2 = Math.PI * 2;
+  var dist =  distance/getDockLength() * pi2;
+  var size  = (1 - Math.cos(dist))/2 * 100;
+  return size + 100;
+};
+
+var getDockLength = function() {
+  var dock = $('div.dock')[0];
+  return dock.offsetHeight;
+};
+
+var jQueryObject = function(element) {
+  return element instanceof jQuery ? element : $(element);
+};
+
+var isInDock = function(x, y) {
+  var dock = $('div.dock')[0];
+  var left = dock.offsetLeft;
+  var topPos = dock.offsetTop;
+  var right = left + dock.offsetWidth;
+  var bottom = topPos + dock.offsetHeight;
+  if (x > right || x < left || y > bottom || y < topPos) {
+    return false;
+  } else {
+    return true;
+  }
+};
 
 var description = function(card) {
     console.log('desc');
@@ -48,6 +101,7 @@ var description = function(card) {
 </script>
 <h1>Projects</h1>
 
+
 <div id='demoMenu'>
   <div class='project'>
     <div class='image'>
@@ -60,7 +114,7 @@ var description = function(card) {
   </div>
   <div class='project'>
     <div class='image'>
-      <%= image_tag( 'fbmuseum.png' ) %>
+      <%= image_tag( 'fbmuseum.png', :class => 'image' ) %>
     </div>
     <a href='#'>FB Museum</a>
     <span class='info'>
@@ -69,7 +123,7 @@ var description = function(card) {
   </div>
   <div class='project'>
     <div class='image'>
-      <%= image_tag( 'lifechain.png' ) %>
+      <%= image_tag( 'lifechain.png', :class => 'image' ) %>
     </div>
     <a href='#'>LifeChain</a>
     <span class='info'>
