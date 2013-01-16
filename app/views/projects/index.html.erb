@@ -24,6 +24,18 @@ $(document).ready(function() {
     }
 });
 
+$('.project').click(function(e) {
+  e.preventDefault();
+
+  $('.mask').css({
+    'width' : $(document).width(),
+    'height' : $(document).height()
+  });
+
+  $('.mask').fadeIn(1000);
+  $('.mask').fadeTo('slow', 0.8);
+});
+
 var dist = function(el) {
   var mX, mY, distance;
 
@@ -99,6 +111,8 @@ var description = function(card) {
         return 208 * card + 100;
     };
 </script>
+
+<div class='mask'>
 <h1>Projects</h1>
 
 
@@ -213,3 +227,5 @@ var description = function(card) {
 				
 <%# 	</div> %>
 <%# </div> %>
+
+</div>
