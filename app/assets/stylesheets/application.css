@@ -128,3 +128,10 @@
   font-size: 0;
   line-height: 0;
 }
+
+.footer {
+  font-size: 8px;
+  font-color: gray;
+  position: absolute;
+  bottom: 0px;
+}
