@@ -5,7 +5,6 @@
 
 
 $(document).ready(function() {
-    console.log('hello 1');
     // Move the arrow so it points to the first project card.
     $('div.arrow-select').each(function() { $(this).css('margin-left', pos(0) + 'px'); });
 
@@ -19,6 +18,14 @@ $(document).ready(function() {
         var d = description($(this).index());
         $('div.description').text(d);
     });
+
+    $('div.project').mouseover(function() {
+        $('div.arrow-select').css('margin-left', pos($(this).index()) + 'px');
+        // Change the description
+        var d = description($(this).index());
+        $('div.description').text(d);
+    });
+
     for (var i = 0; i < $('#dock-item').length; i++) {
       dist($('#dock-item')[i]);
     }

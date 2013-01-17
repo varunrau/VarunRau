@@ -20,21 +20,13 @@
       <div class='dock-item'>
         <%= link_to image_tag('xcode.png'), { :controller => :projects, :action => :index }%>
       </div>
-      <span class='stretch'></span>
+      <div class='dock-item' style='padding-left: 7px'>
+        <%= link_to image_tag('me.png'), { :controller => :splash } %>
+      </div>
     </div>
-
-      <%# <div id="menubar"> %>
-      <%#   <ul> %>
-      <%#     <li><%= link_to("Varun Rau", :controller => 'splash') %1></li> %>
-      <%#     <li><%= link_to("Resume", :action => 'index', :controller => 'resume') %1></li> %>
-      <%#     <li><%= link_to("Projects", :action => 'index', :controller => 'projects') %1></li> %>
-      <%#   </ul> %>
-      <%# </div> %>
-
       <%= yield %>
-
       <span class='footer' style='font-size: 10px; font-color: gray; position:fixed; bottom: 0px; right: 0px;'>
-        Much of the inspiration for this site comes from two of my favorite companies Google and Apple. Hopefully they won't sue me!
+        Much of the inspiration for this site comes from two of my favorite companies Google and Apple.
       </span>
   </body>
 </html>
