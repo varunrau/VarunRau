@@ -23,6 +23,7 @@ end
 group :producution do
     gem 'newrelic_rpm'
     gem 'pg'
+    gem 'taps'
 end
 
 group :development do
