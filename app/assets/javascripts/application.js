@@ -26,5 +26,4 @@ _gaq.push(['_trackPageview']);
 })();
 
 
-$('#about').smallipop({}, 'About');
 
