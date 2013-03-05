@@ -41,7 +41,7 @@ $(document).ready(function() {
     $('html').click( function (e) {
         if ( e.target == this )
         $('.info-bg').slideUp( function() { $(this).remove(); });
-        oldWrapPos = -1;
+        oldWrapPos = 100;
     });
 });
 
