@@ -10,7 +10,6 @@ $(document).ready(function() {
     });
     var oldWrapPos = 0;
     $('.project').click(function(e) {
-        console.log('hi')
         var elements = $('.container').children();
         var container = $('.container');
         var elementsInRow = Math.floor(container.width() / $(elements[0]).width());
