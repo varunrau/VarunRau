@@ -2,39 +2,47 @@ $(document).ready(function() {
     // Move the arrow so it points to the first project card.
     $('div.arrow-select').each(function() { $(this).css('margin-left', pos(0) + 'px'); });
 
-    var init = description(0);
-    $('div.description').text(init);
-
-    $('div.project').click(function() {
-        // Move the arrow
-        $('div.arrow-select').css('margin-left', pos($(this).index()) + 'px');
-        // Change the description
-        var d = description($(this).index());
-        $('div.description').text(d);
-    });
-
     $('div.project').mouseover(function() {
         $('div.arrow-select').css('margin-left', pos($(this).index()) + 'px');
         // Change the description
         var d = description($(this).index());
         $('div.description').text(d);
     });
+    var oldWrapPos = 0;
+    $('.project').click(function(e) {
+        console.log('hi')
+        var elements = $('.container').children();
+        var container = $('.container');
+        var elementsInRow = Math.floor(container.width() / $(elements[0]).width());
+        var selectedPos = $(this).index();
+        var row = Math.floor(selectedPos / elementsInRow) + 1;
+        var wrapPos = (row * elementsInRow);
+        var size = elements.length;
+        if (wrapPos >= size) {
+            wrapPos = size;
+        }
+        wrapPos -= 1;
+        var pointerPos = 40 + ((selectedPos % elementsInRow) * 110);
+        pointerPos = $(this).position().left + $(this).width() / 2 - 10;
+        if (wrapPos == oldWrapPos) {
+            $('.info-pc').css("left", pointerPos + 'px');
+        } else {
+            oldWrapPos = wrapPos;
+            elements.removeClass('edge');
+            $(elements[wrapPos]).addClass('edge');
+            $('.info-bg').slideUp(function() {
+                $(this).remove();
+            });
+            $('.edge').after('<div class="info-bg"><div class="info-pc" style="left:' + pointerPos + 'px"></div><div class="info-cl"></div></div>');
+            $('.info-bg').slideDown();
+        }
+        $('.info-cl').text(description(selectedPos));
+    });
 
-    for (var i = 0; i < $('#dock-item').length; i++) {
-      dist($('#dock-item')[i]);
-    }
-});
-
-$('.project').click(function(e) {
-  e.preventDefault();
-
-  $('.mask').css({
-    'width' : $(document).width(),
-    'height' : $(document).height()
-  });
-
-  $('.mask').fadeIn(1000);
-  $('.mask').fadeTo('slow', 0.8);
+    $('html').click( function (e) {
+        if ( e.target == this )
+        $('.info-bg').slideUp( function() { $(this).remove(); });
+    });
 });
 
 var dist = function(el) {
@@ -109,3 +117,5 @@ var description = function(card) {
     var pos = function(card) {
         return 208 * card + 100;
     };
+
+

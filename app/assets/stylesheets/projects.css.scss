@@ -1,4 +1,4 @@
-// This sweet styling was borrowed from html5rocks.gom/en/tutorials/webgl/demoloop
+// Some of this sweet styling was borrowed from html5rocks.gom/en/tutorials/webgl/demoloop
 
 h1 {
   font-size: 60;
@@ -19,12 +19,11 @@ h1 {
 
 #demoMenu {
   z-index: 100;
-  top: 0px;
-  left: 0px;
+  width: 600px;
+  margin: 0 auto;
+  position: relative;
   color: white;
   text-align: center;
-  width: 100%;
-  height: 100px;
   vertical-align: top;
   background-color: rgba(0, 0, 0, 0);
   -webkit-transform-origin: 50% 0;
@@ -34,11 +33,14 @@ h1 {
   -wekit-perspective-origin: 50% 0;
 }
 
-#project {
+.project {
   cursor: pointer;
-}
-
-#demoMenu > div {
+  width:100px;
+  height:170px;
+  background-color: grey;
+  float:left;
+  margin:5px;
+  font-size: 40px;
   vertical-align: top;
   display: inline-block;
   font-size: 13px;
@@ -51,63 +53,124 @@ h1 {
   -webkit-transform-origin: 50% 50%;
   -webkit-transition-duration: 0.5s;
   -webkit-transition-timing-function: ease-in-out;
-}
 
-#demoMenu .image {
-  width: 180px;
-  height: 120px;
-  overflow: hidden;
-}
-
-#demoMenu .image img {
-  width: 180px;
-}
-
-#demoMenu a {
-  color: black;
-  display: block;
-  font-size: 14px;
-  font-weight: bold;
-  text-decoration: none;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  margin-bottom: 4px;
-  background-color: #30dfff;
-  border-bottom: 1px solid black;
-  text-shadow: 0px 1px 1px rgba(255, 235, 215, 0.5);
-  background: #ffa84c;
-  background: -webkit-gradient(
+  a {
+    color: black;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+    background-color: #30dfff;
+    border-bottom: 1px solid black;
+    text-shadow: 0px 1px 1px rgba(255, 235, 215, 0.5);
+    background: #ffa84c;
+    background: -webkit-gradient(
     linear,
     left top,
     left bottom,
     color-stop(0%, #ffa84c),
     color-stop(100%, #df5b0d)
-  );
+    );
+  }
+
+  .image {
+    width: 180px;
+    height: 120px;
+    overflow: hidden;
+
+    img {
+      width: 180px;
+    }
+  }
+  .author {
+    display: block;
+    font-size: 14px;
+  }
+
+  .info {
+    margin-top: 4px;
+    display:block;
+    color: #ddd;
+    font-size: 12px;
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+
 }
 
-.author {
-  display: block;
-  font-size: 14px;
-}
+// #demoMenu > div {
+//   vertical-align: top;
+//   display: inline-block;
+//   font-size: 13px;
+//   width: 180px;
+//   height: 208px;
+//   padding: 0px;
+//   margin: 10px;
+//   background-color: rgba(0, 0, 0, 0.75);
+//   -webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.75);
+//   -webkit-transform-origin: 50% 50%;
+//   -webkit-transition-duration: 0.5s;
+//   -webkit-transition-timing-function: ease-in-out;
+// }
 
-.info {
-  margin-top: 4px;
-  display:block;
-  color: #ddd;
-  font-size: 12px;
-  margin-left: 4px;
-  margin-right: 4px;
-}
+// #demoMenu .image {
+//   width: 180px;
+//   height: 120px;
+//   overflow: hidden;
+// }
 
-#demoMenu:hover > div {
-  opacity: .5;
-}
+// #demoMenu .image img {
+//   width: 180px;
+// }
 
-#demoMenu >div:hover {
-  -webkit-transform: scale(1.25, 1.25);
-  -webkit-transition-timing-function: ease-in-out;
-  opacity: 1.0; 
-}
+// #demoMenu a {
+//   color: black;
+//   display: block;
+//   font-size: 14px;
+//   font-weight: bold;
+//   text-decoration: none;
+//   padding-top: 4px;
+//   padding-bottom: 4px;
+//   margin-bottom: 4px;
+//   background-color: #30dfff;
+//   border-bottom: 1px solid black;
+//   text-shadow: 0px 1px 1px rgba(255, 235, 215, 0.5);
+//   background: #ffa84c;
+//   background: -webkit-gradient(
+//     linear,
+//     left top,
+//     left bottom,
+//     color-stop(0%, #ffa84c),
+//     color-stop(100%, #df5b0d)
+//   );
+// }
+
+// .author {
+//   display: block;
+//   font-size: 14px;
+// }
+
+// .info {
+//   margin-top: 4px;
+//   display:block;
+//   color: #ddd;
+//   font-size: 12px;
+//   margin-left: 4px;
+//   margin-right: 4px;
+// }
+
+// #demoMenu:hover > div { # COME BACK TO THIS STUFF LATER
+//   opacity: .5;
+// }
+
+// #demoMenu >div:hover {
+//   -webkit-transform: scale(1.25, 1.25);
+//   -webkit-transition-timing-function: ease-in-out;
+//   opacity: 1.0;
+// }
 
 .desc {
   margin-top: 150px;
@@ -129,15 +192,44 @@ h1 {
   opacity: 50%;
 }
 
+// The following css is for v3 of varun's website
 
+.container {
+  width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
 
+.selected {
+  background-color: gray;
+}
 
+.info-cl {
+  height: 100%;
+}
 
+.info-pc {
+  position: absolute;
+  border-bottom: 10px solid gray;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  height: 0;
+  width: 0;
+  float: right;
+  top: -10px;
+}
 
+.info-bg {
+  width: 600px;
+  height: 200px;
+  background-color: gray;
+  float: left;
+  position: relative;
+  margin: 5px;
+  display: none;
+}
 
-
-
-
-
-
-
+.container {
+  margin: 0 auto;
+  position: relative;
+}
