@@ -1,14 +1,6 @@
 $(document).ready(function() {
-    // Move the arrow so it points to the first project card.
-    $('div.arrow-select').each(function() { $(this).css('margin-left', pos(0) + 'px'); });
-
-    $('div.project').mouseover(function() {
-        $('div.arrow-select').css('margin-left', pos($(this).index()) + 'px');
-        // Change the description
-        var d = description($(this).index());
-        $('div.description').text(d);
-    });
     var oldWrapPos = 0;
+    var open = true;
     $('.project').click(function(e) {
         var elements = $('.container').children();
         var container = $('.container');
@@ -23,77 +15,31 @@ $(document).ready(function() {
         wrapPos -= 1;
         var pointerPos = 40 + ((selectedPos % elementsInRow) * 110);
         pointerPos = $(this).position().left + $(this).width() / 2 - 10;
-        if (wrapPos == oldWrapPos) {
-            $('.info-pc').css("left", pointerPos + 'px');
+        console.log("wrapPos = " + wrapPos);
+        console.log("oldpos = " + oldWrapPos);
+        if (wrapPos == oldWrapPos && open) {
+            $('.info-arrow').css("left", pointerPos + 'px');
         } else {
             oldWrapPos = wrapPos;
             elements.removeClass('edge');
             $(elements[wrapPos]).addClass('edge');
-            $('.info-bg').slideUp(function() {
+            $('.info-wrapper').slideUp(function() {
                 $(this).remove();
             });
-            $('.edge').after('<div class="info-bg"><div class="info-pc" style="left:' + pointerPos + 'px"></div><div class="info-cl"></div></div>');
-            $('.info-bg').slideDown();
+            $('.info-wrapper').slideDown();
+            $('.edge').after('<div class="info-wrapper"><div class="info-arrow" style="left:' + pointerPos + 'px"></div><div class="info-text"></div></div>');
+            console.log('pulling down');
         }
-        $('.info-cl').text(description(selectedPos));
+        $('.info-text').text(description(selectedPos));
     });
 
     $('html').click( function (e) {
-        if ( e.target == this )
-        $('.info-bg').slideUp( function() { $(this).remove(); });
-        oldWrapPos = 100;
+        if ( e.target == this ) {
+            $('.info-wrapper').slideUp( function() { $(this).remove(); });
+        }
+        open = false;
     });
 });
-
-var dist = function(el) {
-  var mX, mY, distance;
-
-  function calculateDistance(elem, mouseX, mouseY) {
-    return Math.floor(Math.sqrt(Math.pow(mouseX - ($(elem).offset().left+($(elem).width()/2)), 2) + Math.pow(mouseY - ($(elem).offset().top+($(elem).height()/2)), 2)));
-  }
-
-  $(document).mousemove(function(e) {
-    mX = e.pageX;
-    mY = e.pageY;
-    if (isInDock(mX, mY)) {
-      distance = calculateDistance(el, mX, mY);
-      var dockItem = jQueryObject(el);
-      var normalize = sinusoid(distance)/100;
-      if (normalize >= 1) {
-      }
-    }
-  });
-
-};
-
-var sinusoid = function(distance) {
-  var pi2 = Math.PI * 2;
-  var dist =  distance/getDockLength() * pi2;
-  var size  = (1 - Math.cos(dist))/2 * 100;
-  return size;
-};
-
-var getDockLength = function() {
-  var dock = $('div.dock')[0];
-  return dock.offsetHeight;
-};
-
-var jQueryObject = function(element) {
-  return element instanceof jQuery ? element : $(element);
-};
-
-var isInDock = function(x, y) {
-  var dock = $('div.dock')[0];
-  var left = dock.offsetLeft;
-  var topPos = dock.offsetTop;
-  var right = left + dock.offsetWidth;
-  var bottom = topPos + dock.offsetHeight;
-  if (x > right || x < left || y > bottom || y < topPos) {
-    return false;
-  } else {
-    return true;
-  }
-};
 
 var description = function(card) {
     switch (card) {
@@ -111,11 +57,4 @@ var description = function(card) {
         return "test";
     }
 };
-
-
-    // CARD - the card selected [0, num_projects)
-    var pos = function(card) {
-        return 208 * card + 100;
-    };
-
 
