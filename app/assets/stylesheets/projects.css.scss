@@ -204,13 +204,14 @@ h1 {
   background-color: gray;
 }
 
-.info-text { // cl
+.info-text {
   height: 100%;
+  text-color: white;
 }
 
-.info-arrow { // pc
+.info-arrow {
   position: absolute;
-  border-bottom: 10px solid gray;
+  border-bottom: 10px solid #222;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   height: 0;
@@ -219,10 +220,10 @@ h1 {
   top: -10px;
 }
 
-.info-wrapper { // bg
+.info-wrapper {
   width: 600px;
   height: 200px;
-  background-color: gray;
+  background-color: #222;
   float: left;
   position: relative;
   margin: 5px;
