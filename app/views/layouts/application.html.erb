@@ -10,24 +10,8 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-
-    <div class='dock'>
-      <div class='dock-item'>
-        <%= link_to image_tag('about.png', :style => 'padding-left: 7px;'), { :controller => :about}, :id => 'about' %>
-      </div>
-      <div class='dock-item'>
-        <%= link_to image_tag('resume.png'), { :controller => :resume } %>
-      </div>
-      <div class='dock-item'>
-        <%= link_to image_tag('xcode.png'), { :controller => :projects, :action => :index }%>
-      </div>
-      <div class='dock-item' style='padding-left: 7px'>
-        <%= link_to image_tag('me.png'), { :controller => :splash } %>
-      </div>
+    <div class='background'>
     </div>
-      <%= yield %>
-      <span class='footer' style='font-size: 10px; font-color: gray; position:fixed; bottom: 0px; right: 0px;'>
-        Much of the inspiration for this site comes from two of my favorite companies Google and Apple.
-      </span>
+    <%= yield %>
   </body>
 </html>
